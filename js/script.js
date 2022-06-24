@@ -38,9 +38,9 @@ function createBomb() {
 const button=document.getElementById('button');
 button.addEventListener('click', function(){
     container.innerHTML=null;
+    // * ARRAY RANDOMICO DEL PC
     const arrayPC = [];
     console.log(arrayPC);
-
     for (let a = 0; a < 16; a++) {
         const newBombElement= createBomb();
         arrayPC.push(newBombElement);   
@@ -58,13 +58,18 @@ button.addEventListener('click', function(){
         newGridBox.innerHTML=gridNumber;
         blackList.push(gridNumber);
 
-        container.append(newGridBox);
+        
 
         newGridBox.addEventListener('click', function(){
+            if (arrayPC.includes(newGridBox.innerHTML)) {
+            newGridBox.classList.toggle('bg-red');
+            }else{
             newGridBox.classList.toggle('bg');
             console.log(newGridBox.innerHTML);
+            }
         });
-        
+
+        container.append(newGridBox);
     }
     console.log(arrayPC);
 });

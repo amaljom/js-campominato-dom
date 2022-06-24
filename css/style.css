@@ -27,3 +27,6 @@ body{
 .bg{
     background-color: rgb(144, 154, 243);
 }
+.bg-red{
+    background-color: red;
+}
