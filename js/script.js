@@ -13,23 +13,22 @@ function createElement(){
 
 
 // ! FUNZIONE CHE GENERA UN NUMERO
-function createNumber(usedNumbers){
-    let randomNumber = (Math.floor(Math.random() * 100)+1);
-    //  while(usedNumbers.includes(randomNumber)){
-    //      randomNumber = Math.floor(Math.random() * 100)+1;
-    //  }
+function createNumber(usedNumbers, max, min){
+    let randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
+      while(usedNumbers.includes(randomNumber)){
+         randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
+      }
     return randomNumber;
 }
 
 
 // ! FUNZIONE PER CREARE LA BOMBA
-function createBomb() {
-    let randomBomb = (Math.floor(Math.random() * 16)+1);
-    // ? devo ancora implementare la funzione che eviti la ripetizione di due numeri,
-    // ? intanto vedo se la logica è perlomeno giusta.
-    // while(usedNumbers.includes(randomNumber)){
-    //     randomNumber = Math.floor(Math.random() * 100)+1;
-    // }
+function createBomb(bombArray) {
+    let randomBomb = (Math.floor(Math.random() * 100)+1);
+
+    while(bombArray.includes(randomBomb)){
+        randomBomb = Math.floor(Math.random() * 100)+1;
+    }
     return randomBomb;
 }
 
@@ -42,7 +41,7 @@ button.addEventListener('click', function(){
     const arrayPC = [];
     // console.log(arrayPC);
     for (let a = 0; a < 16; a++) {
-        const newBombElement= createBomb();
+        const newBombElement= createBomb(arrayPC);
         arrayPC.push(newBombElement);   
     }
     let contatore= 0;
@@ -55,7 +54,7 @@ button.addEventListener('click', function(){
         const newGridBox = createElement();
 
         // ? RICHIAMO DELLA FUNZIONE PER GENERARE I NUMERI
-        const gridNumber= createNumber(blackList);
+        const gridNumber= createNumber(blackList, 100, 1);
         newGridBox.innerHTML = gridNumber;
         blackList.push(gridNumber);
 
@@ -67,7 +66,7 @@ button.addEventListener('click', function(){
                    
                     bombaEsplosa=true;
                     newGridBox.classList.add('bg-red');
-                    alert('hai perso! il tuo punteggio è di:'+ contatore);
+                    alert('hai perso! il tuo punteggio è di: '+ contatore);
                 }else{
                     newGridBox.classList.add('bg');
                     contatore++;
