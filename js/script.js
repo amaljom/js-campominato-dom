@@ -10,18 +10,14 @@ function createElement(){
    // diamo indietro il risultato 
     return newBox;
 }
-
-
 // ! FUNZIONE CHE GENERA UN NUMERO
 function createNumber(usedNumbers, max, min){
     let randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
-      while(usedNumbers.includes(randomNumber)){
-         randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
-      }
+        //  while(usedNumbers.includes(randomNumber)){
+        //    randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
+        //   }
     return randomNumber;
 }
-
-
 // ! FUNZIONE PER CREARE LA BOMBA
 function createBomb(bombArray) {
     let randomBomb = (Math.floor(Math.random() * 100)+1);
@@ -31,6 +27,7 @@ function createBomb(bombArray) {
     }
     return randomBomb;
 }
+
 
 
 // ! il problema //
@@ -48,18 +45,17 @@ button.addEventListener('click', function(){
     let bombaEsplosa=false;
 
     // * richiamo la funzione per genereare quadrati
-    for (let index = 0; index < 100; index++){
+    for (let index = 0; index < elements; index++){
         
         // ? RICHIAMO DELLA FUNZIONEPER GENERARE LE BOX
         const newGridBox = createElement();
 
         // ? RICHIAMO DELLA FUNZIONE PER GENERARE I NUMERI
-        const gridNumber= createNumber(blackList, 100, 1);
+        const gridNumber=index;
+        //  createNumber(blackList, 100, 0);
         newGridBox.innerHTML = gridNumber;
-        blackList.push(gridNumber);
-
-    
-    
+        // blackList.push(gridNumber);
+        // ! CREO LE BOMBE
         newGridBox.addEventListener('click', function(){
             if(!bombaEsplosa){
                 if (arrayPC.includes(parseInt(newGridBox.innerHTML))) {
@@ -79,6 +75,19 @@ button.addEventListener('click', function(){
     console.log(arrayPC);
 });
 
+let diffMode = (document.querySelector("#user-diff").value);
 
-// ! per eseguire i nuovi punti del esercizio(il controllo delle bombe), dobbiamo prima far generare tali bombe con una funzione
-// ! VISTO CHE NON HO FATTO IL BONUS, CERCO DI IMPLEMENTARLO PER ORA PER LA LISTA DEI PRIMI 100 NUMERI
+console.log(diffMode);
+let elements;
+
+switch (diffMode){
+    case 1:
+        elements=81;
+        break;
+    case 2:
+        elements=79;
+        break;
+    case 0:
+        elements=100;
+        break;
+}
