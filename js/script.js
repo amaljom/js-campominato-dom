@@ -21,10 +21,15 @@ function createNumber(usedNumbers){
     return randomNumber;
 }
 
+
+// ! FUNZIONE PER CREARE LA BOMBA
+
 // ! il problema //
 const button=document.getElementById('button');
 button.addEventListener('click', function(){
     container.innerHTML=null;
+    const arrayPC = [];
+    console.log(arrayPC);
     // * richiamo la funzione per genereare quadrati
     for (let index = 0; index < 100; index++){
         
@@ -38,11 +43,18 @@ button.addEventListener('click', function(){
 
         container.append(newGridBox);
 
+        const newBombElement= createBomb();
+        arrayPC.push(newBombElement);
+
         newGridBox.addEventListener('click', function(){
             newGridBox.classList.toggle('bg');
             console.log(newGridBox.innerText);
-            });
+        });
+        
         
     }
 });
 
+
+// ! per eseguire i nuovi punti del esercizio(il controllo delle bombe), dobbiamo prima far generare tali bombe con una funzione
+// ! VISTO CHE NON HO FATTO IL BONUS, CERCO DI IMPLEMENTARLO PER ORA PER LA LISTA DEI PRIMI 100 NUMERI
