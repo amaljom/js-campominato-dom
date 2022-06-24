@@ -15,9 +15,9 @@ function createElement(){
 // ! FUNZIONE CHE GENERA UN NUMERO
 function createNumber(usedNumbers){
     let randomNumber = (Math.floor(Math.random() * 100)+1);
-    // while(usedNumbers.includes(randomNumber)){
-    //     randomNumber = Math.floor(Math.random() * 100)+1;
-    // }
+    //  while(usedNumbers.includes(randomNumber)){
+    //      randomNumber = Math.floor(Math.random() * 100)+1;
+    //  }
     return randomNumber;
 }
 
@@ -40,12 +40,13 @@ button.addEventListener('click', function(){
     container.innerHTML=null;
     // * ARRAY RANDOMICO DEL PC
     const arrayPC = [];
-    console.log(arrayPC);
+    // console.log(arrayPC);
     for (let a = 0; a < 16; a++) {
         const newBombElement= createBomb();
         arrayPC.push(newBombElement);   
     }
-    
+    let contatore= 0;
+    let bombaEsplosa=false;
 
     // * richiamo la funzione per genereare quadrati
     for (let index = 0; index < 100; index++){
@@ -55,17 +56,22 @@ button.addEventListener('click', function(){
 
         // ? RICHIAMO DELLA FUNZIONE PER GENERARE I NUMERI
         const gridNumber= createNumber(blackList);
-        newGridBox.innerHTML=gridNumber;
+        newGridBox.innerHTML = gridNumber;
         blackList.push(gridNumber);
 
-        
-
+    
+    
         newGridBox.addEventListener('click', function(){
-            if (arrayPC.includes(newGridBox.innerHTML)) {
-            newGridBox.classList.toggle('bg-red');
-            }else{
-            newGridBox.classList.toggle('bg');
-            console.log(newGridBox.innerHTML);
+            if(!bombaEsplosa){
+                if (arrayPC.includes(parseInt(newGridBox.innerHTML))) {
+                   
+                    bombaEsplosa=true;
+                    newGridBox.classList.add('bg-red');
+                    alert('hai perso! il tuo punteggio è di:'+ contatore);
+                }else{
+                    newGridBox.classList.add('bg');
+                    contatore++;
+                }
             }
         });
 
