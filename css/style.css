@@ -16,7 +16,6 @@ body{
     flex-wrap: wrap;
 }
 .new-grid{
-    width: calc(100% / 10);
     border: 1px solid black;
     display: flex;
     justify-content: center;
@@ -24,6 +23,16 @@ body{
     font-weight: bolder;
     cursor: pointer;
 }
+.square1{
+    width: calc(100% / 10);
+}
+.square2{
+    width: calc(100% / 9);
+}
+.square3{
+    width: calc(100% / 7);
+}
+
 .bg{
     background-color: rgb(144, 154, 243);
 }
