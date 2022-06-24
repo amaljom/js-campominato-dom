@@ -23,6 +23,16 @@ function createNumber(usedNumbers){
 
 
 // ! FUNZIONE PER CREARE LA BOMBA
+function createBomb() {
+    let randomBomb = (Math.floor(Math.random() * 16)+1);
+    // ? devo ancora implementare la funzione che eviti la ripetizione di due numeri,
+    // ? intanto vedo se la logica è perlomeno giusta.
+    // while(usedNumbers.includes(randomNumber)){
+    //     randomNumber = Math.floor(Math.random() * 100)+1;
+    // }
+    return randomBomb;
+}
+
 
 // ! il problema //
 const button=document.getElementById('button');
@@ -30,6 +40,13 @@ button.addEventListener('click', function(){
     container.innerHTML=null;
     const arrayPC = [];
     console.log(arrayPC);
+
+    for (let a = 0; a < 16; a++) {
+        const newBombElement= createBomb();
+        arrayPC.push(newBombElement);   
+    }
+    
+
     // * richiamo la funzione per genereare quadrati
     for (let index = 0; index < 100; index++){
         
@@ -43,16 +60,13 @@ button.addEventListener('click', function(){
 
         container.append(newGridBox);
 
-        const newBombElement= createBomb();
-        arrayPC.push(newBombElement);
-
         newGridBox.addEventListener('click', function(){
             newGridBox.classList.toggle('bg');
-            console.log(newGridBox.innerText);
+            console.log(newGridBox.innerHTML);
         });
         
-        
     }
+    console.log(arrayPC);
 });
 
 
